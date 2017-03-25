@@ -14,14 +14,14 @@ workdir = os.getcwd()
 baseUrl = "https://e621.net/post/index/"
 
 def motd():
-print "					  "
-print "		   __ ___  __ "
-print "  	  / /|__ \/_ |"
-print "	 ___ / /_   ) || |"
-print " / _ \ '_ \ / / | |"
-print "|  __/ (_) / /_ | |"
-print " \___|\___/____||_|"
-print "	 .:.Scraper.:.	  "
+	print "			      "
+	print "		   __ ___  __ "
+	print "  	  / /|__ \/_ |"
+	print "	 ___ / /_   ) || |"
+	print " / _ \ '_ \ / / | |"
+	print "|  __/ (_) / /_ | |"
+	print " \___|\___/____||_|"
+	print "	 .:.Scraper.:.	  "
 
 def getImgz_e621():
 	
