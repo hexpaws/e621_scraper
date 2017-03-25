@@ -76,7 +76,7 @@ parser.add_argument("--search")
 parser.add_argument("--pages")
 args = parser.parse_args()
 
+motd()
 for j in range(1,int(args.pages)):
 	compiledUrl = baseUrl+str(j)+str("/")+args.search
-
 	getImgz_e621(compiledUrl)
