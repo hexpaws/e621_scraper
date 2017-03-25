@@ -14,7 +14,7 @@ workdir = os.getcwd()
 baseUrl = "https://e621.net/post/index/"
 
 def motd():
-	print "			      "
+	print "					  "
 	print "		   __ ___  __ "
 	print "  	  / /|__ \/_ |"
 	print "	 ___ / /_   ) || |"
@@ -23,9 +23,9 @@ def motd():
 	print " \___|\___/____||_|"
 	print "	 .:.Scraper.:.	  "
 
-def getImgz_e621():
+def getImgz_e621(url):
 	
-	response = resp(baseUrl).text
+	response = resp(url).text
 	linkz = re.compile(ur'"file_url":"https:\/\/static1.e621.net\/data\S{39}.[jpg|png|jpeg|gif]+')
 	loot = re.findall(linkz, response)
 	urlID  = args.search
@@ -62,6 +62,7 @@ def getImgz_e621():
 					print("Value Error: {0}".format(valueerr))   
 
 				print "input wget", links
+				print url
 				print (wget.download(links))
 				print "\n"		
 
@@ -75,7 +76,7 @@ parser.add_argument("--search")
 parser.add_argument("--pages")
 args = parser.parse_args()
 
-motd()
 for j in range(1,int(args.pages)):
 	compiledUrl = baseUrl+str(j)+str("/")+args.search
-	getImgz_e621()
+
+	getImgz_e621(compiledUrl)
