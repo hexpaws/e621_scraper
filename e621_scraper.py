@@ -31,7 +31,6 @@ def getImgz_e621(url):
 	urlID  = args.search
 
 	if not os.path.exists(urlID) or os.path.exists("../"+urlID):
-	
 			try:
 					os.mkdir(urlID)
 			except OSError as oserr_mkdir:
