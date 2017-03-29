@@ -4,6 +4,7 @@
 import requests
 import argparse
 import shutil
+#import ffmpy
 import time
 import sys
 import re
@@ -19,8 +20,8 @@ baseUrl = "https://e621.net/post/index/"
 
 
 def motd():
-	print "e621"
-	print ".:.Scraper.:.\n"
+	print ("e621")
+	print (".:.Scraper.:.\n")
 
 def getImgz_e621(url, counter=0):
 	
@@ -45,7 +46,7 @@ def getImgz_e621(url, counter=0):
 					os.mkdir(urlID)
 			except OSError as oserr_mkdir:
 					if debugging:
-							print ("OS Error: {0}".format(oserr_mkdir))
+							print (("OS Error: {0}".format(oserr_mkdir)))
 			else:   
 					os.chdir(urlID)
 
@@ -70,7 +71,7 @@ def getImgz_e621(url, counter=0):
 	elif foundID and foundLinks:
 		pass
 	else:
-		print "Something that wasn't supposed to happend, \n happend please make issue at github.. thanks"
+		print ("Something that wasn't supposed to happend, \n happend please make issue at github.. thanks")
 
 	IDpLink_Dict = dict(zip(foundID, foundLinks))
 
@@ -84,7 +85,7 @@ def getImgz_e621(url, counter=0):
 
 		except ValueError as valueerr:           
 					if debugging:
-						print("Value Error: {0}".format(valueerr))
+						print(("Value Error: {0}".format(valueerr)))
 					
 					stream = resp(LINK, stream=True)
 					start = time.time()
@@ -92,10 +93,10 @@ def getImgz_e621(url, counter=0):
 					with open(name, 'wb') as file:
 						shutil.copyfileobj(stream.raw, file)
 						counter += 1
-					print "Downloaded: {0}     Count: {1}     Seconds: {2:4f}     Filesize: {3:d}KB     ".format(name, counter, (time.time()-start), (os.stat(name).st_size >> 10))
+					print ("Downloaded: {0}     Count: {1}     Seconds: {2:4f}     Filesize: {3:d}KB     ".format(name, counter, (time.time()-start), (os.stat(name).st_size >> 10)))
 
 		else:
-			print "Found IT: {0}     Filesize: {1:d}KB ".format(name, (os.stat(name).st_size >> 10))
+			print ("Found IT: {0}     Filesize: {1:d}KB ".format(name, (os.stat(name).st_size >> 10)))
 
 	os.chdir(workdir)
 	
@@ -113,12 +114,12 @@ motd()
 if args.search and args.pages:
 	for pages in range(1,int(args.pages)+1):
 		compiledUrl = baseUrl+str(pages)+str("/")+args.search
-		print "\nURL: {0}".format(compiledUrl)
+		print ("\nURL: {0}".format(compiledUrl))
 		getImgz_e621(compiledUrl)
 
 if args.pool: 
 	#while True:
 	for pool in range(1,9999):
 		compiledUrl = baseUrl.replace('post', 'pool').replace('index','show')+str(args.pool)+"?page="+str(pool)
-		print "\nURL: {0}".format(compiledUrl)
+		print ("\nURL: {0}".format(compiledUrl))
 		getImgz_e621(compiledUrl)
